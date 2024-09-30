@@ -10,14 +10,19 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        for (int i = 0; i<temperatureSeries.length; i++){
-            if (temperatureSeries[i] < -273){throw new InputMismatchException();}
+        double errorNumber = -273.0; 
+        for (int i = 0; i < temperatureSeries.length; i++){
+            if (temperatureSeries[i] < errorNumber){
+                throw new InputMismatchException();
+            }
         }
         tempSeries = temperatureSeries;
     }
 
     public double average() {
-        if (tempSeries.length == 0){throw new IllegalArgumentException("Empty array");}
+        if (tempSeries.length == 0){
+            throw new IllegalArgumentException("Empty array");
+        }
         double sum = 0.0;
         for(double temp: tempSeries){
             sum += temp;
@@ -26,7 +31,9 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double deviation() {
-        if (tempSeries.length == 0){throw new IllegalArgumentException("Empty array");}
+        if (tempSeries.length == 0){
+            throw new IllegalArgumentException("Empty array");
+        }
         double average = average();
         double sumOfSquares = 0;
         for (double temp: tempSeries){
@@ -36,7 +43,9 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double min() {
-        if (tempSeries.length == 0){throw new IllegalArgumentException("Empty array");}
+        if (tempSeries.length == 0){
+            throw new IllegalArgumentException("Empty array");
+        }
         double min = Double.POSITIVE_INFINITY;
         for (double temp: tempSeries){
             if (temp < min){
@@ -47,7 +56,9 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double max() {
-        if (tempSeries.length == 0){throw new IllegalArgumentException("Empty array");}
+        if (tempSeries.length == 0){
+            throw new IllegalArgumentException("Empty array");
+        }
         double max = Double.NEGATIVE_INFINITY;
         for (double temp: tempSeries){
             if (temp > max){
@@ -139,12 +150,16 @@ public class TemperatureSeriesAnalysis {
     }
 
     public void reset() {
-        if (tempSeries.length == 0){throw new IllegalArgumentException("Empty array");}
-        tempSeries = new double[0];
+        if (tempSeries.length == 0){
+            throw new IllegalArgumentException("Empty array");
+        }
+        tempSeries = new double[0]; 
     }
 
     public double[] sortTemps() {
-        if (tempSeries.length == 0){throw new IllegalArgumentException("Empty array");}
+        if (tempSeries.length == 0){
+            throw new IllegalArgumentException("Empty array");
+        }
         boolean sorted = false;
         int i = 1;
         while (!sorted && i <= tempSeries.length-1){
