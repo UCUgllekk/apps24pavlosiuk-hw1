@@ -184,7 +184,11 @@ public class TemperatureSeriesAnalysis {
         if (tempSeries.length == 0) {
             throw new IllegalArgumentException("Empty array");
         }
-        return null;
+        double avgTemp = this.average();
+        double devTemp = this.deviation();
+        double minTemp = this.min();
+        double maxTemp = this.max();
+        return new TempSummaryStatistics(avgTemp, devTemp, minTemp, maxTemp);
     }
 
     public int addTemps(double... temps) {
