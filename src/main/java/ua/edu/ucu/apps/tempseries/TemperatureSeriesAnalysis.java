@@ -10,13 +10,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
-        final double ERRORNUMBER = -273.0; 
-        for  (int i = 0; i < temperatureSeries.length; i++) {
-            if (temperatureSeries[i] < ERRORNUMBER) {
-                throw new InputMismatchException();
-            }
-        }
-        tempSeries = temperatureSeries;
+        tempSeries = temperatureSeries.clone();
     }
 
     public double average() {
@@ -183,7 +177,7 @@ public class TemperatureSeriesAnalysis {
             }
             i++;
         }
-        return tempSeries;
+        return tempSeries.clone();
     }
 
     public TempSummaryStatistics summaryStatistics() {
@@ -194,6 +188,12 @@ public class TemperatureSeriesAnalysis {
     }
 
     public int addTemps(double... temps) {
+        final double ERRORNUMBER = -273.0; 
+        for  (int i = 0; i < temps.length; i++) {
+            if (temps[i] < ERRORNUMBER) {
+                throw new InputMismatchException();
+            }
+        }
         int totalSize = tempSeries.length + temps.length;
         if (tempSeries.length < tempSeries.length + temps.length) {
             double[] newTempSeries = new double[totalSize*2];
