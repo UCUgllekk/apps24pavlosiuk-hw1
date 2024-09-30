@@ -13,6 +13,10 @@ public class TemperatureSeriesAnalysis {
         tempSeries = temperatureSeries.clone();
     }
 
+    public double[] getTemps() {
+        return this.tempSeries;
+    }
+
     public double average() {
         if (tempSeries.length == 0) {
             throw new IllegalArgumentException("Empty array");
