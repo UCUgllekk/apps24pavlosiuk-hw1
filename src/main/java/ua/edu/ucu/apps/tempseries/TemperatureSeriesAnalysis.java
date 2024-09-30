@@ -14,7 +14,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public double[] getTemps() {
-        return this.tempSeries;
+        return this.tempSeries.clone();
     }
 
     public double average() {

@@ -7,6 +7,7 @@ import java.util.InputMismatchException;
 import org.junit.Before;
 import org.junit.Test;
 
+import ua.edu.ucu.apps.tempseries.TempSummaryStatistics;
 import ua.edu.ucu.apps.tempseries.TemperatureSeriesAnalysis;
 
 public class TemperatureSeriesAnalysisTest {
@@ -15,10 +16,9 @@ public class TemperatureSeriesAnalysisTest {
 
     @Before
     public void setUp(){
-        double[] temperatureSeriesEmpty = {};
         double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
         seriesAnalysisEmpty = new 
-                            TemperatureSeriesAnalysis(temperatureSeriesEmpty);
+                            TemperatureSeriesAnalysis();
 
         seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
     }
@@ -163,6 +163,21 @@ public class TemperatureSeriesAnalysisTest {
     @Test(expected = IllegalArgumentException.class)
     public void testSortTempsEmptyArray(){
         seriesAnalysisEmpty.sortTemps();
+    }
+
+    @Test
+    public void testSummaryStatisticsMultipleElements() {
+        TempSummaryStatistics stats = seriesAnalysis.summaryStatistics();
+
+        assertEquals(1.0, stats.getAvg(), 0.00001);
+        assertEquals(3.741657, stats.getDev(), 0.00001);
+        assertEquals(-5.0, stats.getMin(), 0.00001);
+        assertEquals(5.0, stats.getMax(), 0.00001);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSummaryStatisticsEmpty() {
+        seriesAnalysisEmpty.summaryStatistics();
     }
 
     @Test
